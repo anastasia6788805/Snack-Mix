@@ -25,7 +25,7 @@ nav{
     padding:16px 24px;background:#fff;position:sticky;top:0;box-shadow:0 2px 12px rgba(0,0,0,0.06);z-index:100;
 }
 .nav-logo{font-family:Montserrat, sans-serif;font-size:28px;font-weight:800;color:var(--accent);}
-.nav-menu{display:flex;gap:18px;}
+.nav-menu{display:flex;gap:18px;flex-wrap:wrap;}
 .nav-menu a{padding:8px 14px;border-radius:8px;font-weight:600;transition:0.3s;}
 .nav-menu a:hover{background:var(--accent-light);}
 .nav-cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;font-weight:700;}
@@ -36,9 +36,9 @@ nav{
 .hero p{margin-top:16px;font-size:18px;color:var(--muted);}
 
 /* Sections */
-section{margin-bottom:48px;}
+section{margin-bottom:48px;padding:0 8px;}
 h2.section-title{font-family:Montserrat, sans-serif;font-size:28px;color:var(--accent);margin-bottom:12px;}
-p.section-sub{color:var(--muted);font-size:16px;}
+p.section-sub{color:var(--text);font-size:16px;margin-bottom:12px;}
 
 /* Snack Zones */
 .zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px;}
@@ -48,12 +48,13 @@ p.section-sub{color:var(--muted);font-size:16px;}
 
 /* Diversity block */
 .diversity{background:#fff;margin-top:24px;padding:24px;border-radius:var(--radius);box-shadow:0 4px 12px rgba(0,0,0,0.06);}
-.diversity p{font-size:16px;color:var(--text);}
+.diversity p{font-size:16px;color:var(--text);text-align:center;}
 
 /* Services */
 .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px;}
-.service-card{background:#fff;padding:20px;border-radius:var(--radius);box-shadow:0 4px 12px rgba(0,0,0,0.06);}
-.service-card h4{font-weight:700;color:var(--accent);margin-bottom:8px;}
+.service-card{background:#fff;padding:24px;border-radius:var(--radius);box-shadow:0 4px 12px rgba(0,0,0,0.06);}
+.service-card h4{font-weight:800;color:var(--accent);margin-bottom:12px;font-size:20px;}
+.service-card p{font-size:16px;color:var(--text);}
 
 /* Locations */
 .locations{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:16px;}
@@ -61,15 +62,55 @@ p.section-sub{color:var(--muted);font-size:16px;}
 .loc-card strong{display:block;font-size:16px;margin-bottom:6px;}
 
 /* Install Form */
-form{display:grid;gap:16px;margin-top:16px;}
-input,textarea{padding:10px;border-radius:8px;border:1px solid #ccc;font-size:14px;}
-button{background:var(--accent);color:#fff;border:none;padding:12px 16px;border-radius:8px;font-weight:700;cursor:pointer;}
+.install-form{
+  background:#fff;
+  padding:24px;
+  border-radius:var(--radius);
+  box-shadow:0 4px 12px rgba(0,0,0,0.06);
+  border:2px solid var(--accent);
+  max-width:600px;
+  margin:24px auto;
+}
+.install-form h3{font-family:Montserrat, sans-serif;font-size:22px;color:var(--accent);margin-bottom:16px;}
+.install-form input, .install-form textarea{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:14px;
+}
+.install-form button{
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:12px 16px;
+  border-radius:8px;
+  font-weight:700;
+  cursor:pointer;
+  margin-top:8px;
+  width:100%;
+}
 
 /* Contact */
-.contact p{margin:6px 0;}
+.contact{max-width:600px;margin:0 auto;text-align:center;}
+.contact p{margin:6px 0;color:#0B1220;font-size:16px;}
+
+/* Footer */
+footer{margin-top:24px;text-align:center;color:#555;font-size:14px;}
 
 /* Smooth scroll */
 html{scroll-behavior:smooth;}
+
+/* Responsive */
+@media(max-width:768px){
+  .hero h1{font-size:42px;}
+  .hero h2{font-size:22px;}
+  .service-card h4{font-size:18px;}
+}
+@media(max-width:480px){
+  .hero h1{font-size:34px;}
+  .hero h2{font-size:18px;}
+}
 </style>
 </head>
 <body>
@@ -79,7 +120,7 @@ html{scroll-behavior:smooth;}
   <div class="nav-menu">
     <a href="#about">About</a>
     <a href="#zones">Snack Zones</a>
-    <a href="#diversity">Diversity</a>
+    <a href="#diversity">For Everyone</a>
     <a href="#services">Range of Services</a>
     <a href="#locations">Locations</a>
     <a href="#why">Why Choose Us</a>
@@ -99,7 +140,7 @@ html{scroll-behavior:smooth;}
   <!-- Snack Zones -->
   <section id="zones">
     <h2 class="section-title">Our Snack Zones</h2>
-    <p class="section-sub">Combining three categories in one machine:</p>
+    <p class="section-sub">Combining three categories in one machine</p>
     <div class="zones">
       <div class="zone">
         <h3>Healthy</h3>
@@ -179,27 +220,30 @@ html{scroll-behavior:smooth;}
 
   <!-- Install Form -->
   <section id="install">
-    <h2 class="section-title">Request Installation</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="tel" placeholder="Phone Number" required>
-      <input type="text" placeholder="Location / Address" required>
-      <textarea placeholder="Comments / Preferences"></textarea>
-      <button type="submit">Send Request</button>
-    </form>
+    <div class="install-form">
+      <h3>Request Installation</h3>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="text" placeholder="Location / Address" required>
+        <textarea placeholder="Comments / Preferences"></textarea>
+        <button type="submit">Send Request</button>
+      </form>
+    </div>
   </section>
 
   <!-- Contact -->
   <section id="contact">
-    <h2 class="section-title">Contact</h2>
     <div class="contact">
       <p>Email: snackmix.vending@gmail.com</p>
       <p>Instagram/TikTok: @snackmix_vending</p>
-      <p>Phone: +375 (XX) XXX-XX-XX</p>
     </div>
   </section>
 
 </div>
+
+<footer>
+  © SnackMix Vending. All rights reserved.
+</footer>
 
 </body>
 </html>
