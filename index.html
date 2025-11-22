@@ -1,363 +1,222 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>SnackMix Vending — vending machines with something for everyone</title>
-
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Poppins:wght@300;400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SnackMix Vending</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #0b1220;
-    --card: rgba(255,255,255,0.03);
-    --text: #eef6ff;
-    --muted: #bfcbd8;
-
-    /* color palette requested */
-    --peach: #FFB8A0;       /* softer peach */
-    --soft-orange: #FF9A4D; /* more saturated */
-    --light-orange: #FFD37A;/* bright light orange */
-    --lime: #C7FF4D;        /* neon lime accent */
-    --accent-grad: linear-gradient(90deg, var(--soft-orange), var(--light-orange));
-
-    --radius: 14px;
-    --maxw: 1150px;
-    --shadow-lg: 0 18px 50px rgba(2,6,23,0.7);
+    --light-bg:#FFF8F0;
+    --text:#0B1220;
+    --muted:#555555;
+    --accent:#FF9A4D;
+    --accent-light:#FFD37A;
+    --lime:#C7FF4D;
+    --radius:12px;
+    --maxw:1150px;
   }
 
-  /* base reset */
-  *{box-sizing:border-box}
-  html,body{height:100%}
   body{
     margin:0;
-    font-family: Poppins, Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background: linear-gradient(180deg,#071227 0%, #07162a 70%);
+    font-family:Poppins, sans-serif;
+    background:var(--light-bg);
     color:var(--text);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    padding:20px;
-    display:flex;justify-content:center;
+    line-height:1.5;
   }
-  .wrap{width:100%;max-width:var(--maxw);}
 
-  /* NAV */
+  a{text-decoration:none;color:inherit;}
+  *{box-sizing:border-box;}
+
+  /* NAVIGATION */
   nav{
-    display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;border-radius:12px;margin-bottom:16px;
-    background: linear-gradient(90deg, rgba(255,154,77,0.06), rgba(255,211,122,0.03));
-    position:sticky;top:16px;z-index:60;backdrop-filter: blur(6px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 24px;
+    background:#fff;
+    position:sticky;
+    top:0;
+    box-shadow:0 2px 12px rgba(0,0,0,0.06);
+    z-index:100;
   }
-  .brand{display:flex;gap:12px;align-items:center}
-  .logo{
-    width:60px;height:60px;border-radius:12px;
-    background: linear-gradient(135deg,var(--peach), var(--soft-orange));
-    display:flex;align-items:center;justify-content:center;font-weight:800;color:#081221;
-    font-family: Montserrat, sans-serif;font-size:18px;box-shadow:0 10px 30px rgba(255,154,77,0.12);
+  .nav-logo{
+    font-family:Montserrat, sans-serif;
+    font-size:24px;
+    font-weight:800;
+    color:var(--accent);
   }
-  .brand .text{line-height:1}
-  .brand .title{font-weight:800;font-family:Montserrat;font-size:16px}
-  .brand .subtitle{font-size:12px;color:var(--muted)}
-  .menu{display:flex;gap:12px;align-items:center}
-  .menu a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600}
-  .menu a:hover{color:var(--text);background:rgba(255,255,255,0.03)}
-  .btn-cta{background:var(--accent-grad);color:#081229;padding:10px 14px;border-radius:12px;font-weight:800;text-decoration:none;box-shadow:0 8px 30px rgba(255,154,77,0.14)}
+  .nav-menu{
+    display:flex;
+    gap:18px;
+  }
+  .nav-menu a{
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:600;
+    transition:0.3s;
+  }
+  .nav-menu a:hover{
+    background:var(--accent-light);
+  }
+  .nav-cta{
+    background:var(--accent);
+    color:#fff;
+    padding:10px 16px;
+    border-radius:8px;
+    font-weight:700;
+  }
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:24px;}
 
   /* HERO */
   .hero{
-    display:grid;grid-template-columns:1fr 440px;gap:26px;align-items:center;margin-bottom:28px;
+    text-align:center;
+    margin:48px 0;
   }
-  .hero-left{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:28px;border-radius:18px;box-shadow:var(--shadow-lg)}
-  .kicker{display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg,var(--soft-orange),var(--light-orange));color:#081229;font-weight:700;margin-bottom:12px;font-size:13px}
-  h1{font-family:Montserrat, sans-serif;font-size:38px;margin:6px 0 12px 0;line-height:1.03;color:#fff}
-  p.lead{color:var(--muted);font-size:17px;margin:0 0 18px 0}
-  .hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-  .btn-primary{background:linear-gradient(90deg,var(--soft-orange),var(--light-orange));color:#081229;padding:12px 16px;border-radius:12px;font-weight:800;text-decoration:none;box-shadow:0 12px 36px rgba(255,154,77,0.12)}
-  .btn-secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px;color:var(--muted);text-decoration:none;font-weight:700}
-  .pill-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-  .pill{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:700}
-
-  .hero-right{position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);background:linear-gradient(180deg,var(--peach), var(--soft-orange))}
-  .hero-image{width:100%;height:100%;display:block;object-fit:cover;min-height:320px}
-
-  /* sticker examples */
-  .sticker{
-    position:absolute;padding:8px 12px;border-radius:999px;font-weight:800;color:#081229;background:linear-gradient(90deg,var(--lime),#efff9a);right:14px;top:14px;box-shadow:0 10px 30px rgba(199,255,77,0.08)
+  .hero h1{
+    font-family:Montserrat, sans-serif;
+    font-size:48px;
+    margin:0;
   }
-  .decor-1{position:absolute;left:10px;bottom:10px;width:76px;border-radius:12px;transform:rotate(-8deg);filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))}
-  .decor-2{position:absolute;right:8px;bottom:26%;width:62px;border-radius:50%}
-
-  /* sections */
-  section{margin-bottom:22px}
-  .section-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-  .section-head h2{margin:0;font-size:26px;color:var(--light-orange);font-weight:800}
-  .section-sub{color:var(--muted);margin-top:6px}
-
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:14px;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
-
-  /* services grid */
-  .zones{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
-  .zone{padding:16px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent);min-height:220px;position:relative;overflow:hidden}
-  .zone h3{margin:0 0 8px 0;font-weight:700;color:#fff}
-  .zone p{margin:0;color:var(--muted)}
-  .zone .items{margin-top:12px;display:flex;flex-direction:column;gap:10px}
-  .item{display:flex;gap:12px;align-items:center}
-  .avatar{width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,var(--soft-orange),var(--light-orange));display:flex;align-items:center;justify-content:center;font-weight:800;color:#081229}
-  .item .label{font-weight:700}
-
-  /* locations */
-  .locations{display:flex;flex-direction:column;gap:10px;margin-top:12px}
-  .loc{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:12px;background:rgba(255,255,255,0.02)}
-  .loc strong{font-size:15px}
-  .map{height:220px;border-radius:12px;overflow:hidden;margin-top:12px}
-
-  /* why grid */
-  .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
-  .why-card{padding:16px;border-radius:12px;background:linear-gradient(90deg, rgba(255,215,180,0.02), rgba(199,255,77,0.02));min-height:110px}
-  .why-card h4{margin:0;color:var(--text)}
-  .why-card p{margin:8px 0 0;color:var(--muted)}
-
-  /* install CTA */
-  .install{margin-top:14px;padding:18px;border-radius:12px;background:linear-gradient(90deg, rgba(255,154,77,0.06), rgba(199,255,77,0.03));display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .install .left{}
-  .install h3{margin:0;font-size:18px}
-  .install p{color:var(--muted);margin-top:6px}
-  .install .install-btn{background:linear-gradient(90deg,var(--soft-orange),var(--light-orange));padding:10px 14px;border-radius:10px;font-weight:800;color:#081229;text-decoration:none}
-
-  footer{margin-top:28px;text-align:center;color:var(--muted)}
-
-  /* small decorative stickers (fruit/drink icons using images) */
-  .dec-sticker{position:absolute;pointer-events:none;border-radius:999px;box-shadow:0 14px 40px rgba(0,0,0,0.45)}
-
-  /* responsive */
-  @media(max-width:1000px){
-    .hero{grid-template-columns:1fr}
-    .zones{grid-template-columns:1fr}
-    .why-grid{grid-template-columns:1fr}
-    .menu{display:none}
+  .hero h2{
+    font-size:24px;
+    margin-top:12px;
+    color:var(--muted);
   }
-  @media(max-width:520px){
-    h1{font-size:26px}
-    .logo{width:52px;height:52px}
-    .hero-right{min-height:240px}
+
+  /* SECTIONS */
+  section{margin-bottom:48px;}
+  h2.section-title{
+    font-family:Montserrat, sans-serif;
+    font-size:28px;
+    color:var(--accent);
+    margin-bottom:12px;
   }
+  p.section-sub{
+    color:var(--muted);
+    font-size:16px;
+  }
+
+  /* 3 zones block */
+  .zones{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:16px;
+    margin-top:24px;
+  }
+  .zone{
+    background:#fff;
+    padding:20px;
+    border-radius:var(--radius);
+    box-shadow:0 4px 12px rgba(0,0,0,0.06);
+  }
+  .zone h3{
+    font-family:Montserrat, sans-serif;
+    font-size:20px;
+    margin-bottom:10px;
+    color:var(--accent);
+  }
+  .zone p{
+    font-size:15px;
+    color:var(--text);
+  }
+
+  /* SERVICES */
+  .services{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:16px;
+    margin-top:24px;
+  }
+  .service-card{
+    background:#fff;
+    padding:20px;
+    border-radius:var(--radius);
+    box-shadow:0 4px 12px rgba(0,0,0,0.06);
+  }
+  .service-card h4{
+    font-weight:700;
+    color:var(--accent);
+    margin-bottom:8px;
+  }
+
+  /* LOCATIONS */
+  .locations{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:16px;
+    margin-top:16px;
+  }
+  .loc-card{
+    background:#fff;
+    padding:20px;
+    border-radius:var(--radius);
+    box-shadow:0 4px 12px rgba(0,0,0,0.06);
+  }
+  .loc-card strong{display:block;font-size:16px;margin-bottom:6px;}
+
+  /* INSTALL FORM */
+  form{
+    display:grid;
+    gap:16px;
+    margin-top:16px;
+  }
+  input,textarea{
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:14px;
+  }
+  button{
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    padding:12px 16px;
+    border-radius:8px;
+    font-weight:700;
+    cursor:pointer;
+  }
+
+  /* CONTACT */
+  .contact p{margin:6px 0;}
 </style>
 </head>
 <body>
-  <div class="wrap">
 
-    <!-- NAV -->
-    <nav>
-      <div class="brand">
-        <div class="logo">SM</div>
-        <div class="text">
-          <div class="title">SnackMix Vending</div>
-          <div class="subtitle">vending machines with something for everyone</div>
-        </div>
-      </div>
-
-      <div class="menu" role="navigation">
-        <a href="#about">About the Company</a>
-        <a href="#location">Location</a>
-        <a href="#services">Range of Services</a>
-        <a href="#why">Why Choose Us</a>
-        <a class="btn-cta" href="#install">Install a Machine</a>
-      </div>
-    </nav>
-
-    <!-- HERO -->
-    <div class="hero" role="banner">
-      <div class="hero-left">
-        <span class="kicker">Snack of the Month</span>
-        <h1>SnackMix Vending — vending machines with something for everyone</h1>
-        <p class="lead">Healthy, classic and exotic snacks in one bright, easy-to-use machine. Placed in universities and business centers — curated choices, contactless payment and fresh rotations every month.</p>
-
-        <div class="hero-actions">
-          <a class="btn-primary" href="#install">Request Installation</a>
-          <a class="btn-secondary" href="#services">See Range</a>
-        </div>
-
-        <div class="pill-row" aria-hidden="true" style="margin-top:16px">
-          <div class="pill">Healthy</div>
-          <div class="pill">Classic</div>
-          <div class="pill">Exotic</div>
-        </div>
-      </div>
-
-      <div class="hero-right" aria-hidden="true">
-        <!-- main vending image -->
-        <img class="hero-image" src="https://images.unsplash.com/photo-1585238342028-3ae3b41b8762?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=3f3b8b1d6f7f7a6e9b2f8c6a9b4e6d7e" alt="Vending machine front">
-        <div class="sticker">Try Exotic</div>
-
-        <!-- decorative round stickers (fruit/drink) -->
-        <img class="dec-sticker decor-1" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=5bdb9a3a337b6d8c3e0ab3f0b3ac1f2f" alt="berries" />
-        <img class="dec-sticker decor-2" src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=a26e1ef7d8f9c3b2ee2d5b9f6a2b3c4d" alt="drink" />
-      </div>
-    </div>
-
-    <!-- ABOUT -->
-    <section id="about" aria-labelledby="aboutTitle">
-      <div class="section-head">
-        <h2 id="aboutTitle">About the Company</h2>
-      </div>
-
-      <div class="card">
-        <p style="color:var(--muted);font-size:16px;margin:0 0 12px 0">SnackMix Vending brings three snack universes into a single, user-friendly machine: <strong>Healthy</strong> (nuts, protein bars), <strong>Classic</strong> (chips, chocolate, sodas) and <strong>Exotic</strong> (Asian & Latin treats). We place machines where people need quick, quality snacks — campuses, offices, and public spaces. Our focus is variety, fair pricing and monthly product drops to keep customers coming back.</p>
-
-        <div style="display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:center;margin-top:14px">
-          <div>
-            <ul style="color:var(--muted);margin-top:6px">
-              <li><strong>Curated 3-zone layout</strong> for easy choice and discovery.</li>
-              <li><strong>Contactless payment</strong> and modern UI on the machine.</li>
-              <li><strong>Seasonal & limited items</strong> — Snack of the Month program.</li>
-            </ul>
-          </div>
-          <img src="https://images.unsplash.com/photo-1604908177522-3d809a7f6f2d?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=5b6a7e8c9d0f1a2b3c4d5e6f7a8b9c0d" alt="assorted snacks" style="width:100%;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.5)"/>
-        </div>
-      </div>
-    </section>
-
-    <!-- LOCATION -->
-    <section id="location" aria-labelledby="locTitle">
-      <div class="section-head">
-        <h2 id="locTitle">Location</h2>
-      </div>
-
-      <div class="card">
-        <p class="section-sub">We target high-traffic places where people want quick access to snacks — university halls, office lobbies and coworking kitchens. Machines can operate 24/7 depending on permissions.</p>
-
-        <div class="locations">
-          <div class="loc">
-            <div>
-              <strong>Belarusian State University — Main Hall</strong><br>
-              <span style="color:var(--muted)">Installed: Oct 30 • Available 24/7</span>
-            </div>
-            <div style="color:var(--muted)">Active</div>
-          </div>
-
-          <div class="loc">
-            <div>
-              <strong>Business Center "Alpha" — Reception</strong><br>
-              <span style="color:var(--muted)">Planned installation • Negotiation in progress</span>
-            </div>
-            <div style="color:var(--muted)">Planned</div>
-          </div>
-        </div>
-
-        <div class="map" aria-hidden="true" style="margin-top:12px">
-          <img src="https://images.unsplash.com/photo-1490201279403-02c9f1b7d5a2?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b" alt="map placeholder" style="width:100%;height:100%;object-fit:cover;border-radius:12px;filter:brightness(0.85)"/>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services" aria-labelledby="servicesTitle">
-      <div class="section-head">
-        <h2 id="servicesTitle">Range of Services</h2>
-      </div>
-
-      <div class="card">
-        <p class="section-sub">Full-cycle vending: installation, tailored assortment, restocking, payment & analytics. Each machine is divided into three clear zones so users can quickly pick what they want.</p>
-
-        <div class="zones">
-          <div class="zone">
-            <h3>Healthy Zone</h3>
-            <p>Nut mixes, protein bars, dried fruit, water and low-calorie snacks.</p>
-            <div class="items" aria-hidden="true">
-              <div class="item"><div class="avatar">H</div><div class="label">Nut mixes</div></div>
-              <div class="item"><div class="avatar">P</div><div class="label">Protein bars</div></div>
-            </div>
-          </div>
-
-          <div class="zone">
-            <h3>Classic Zone</h3>
-            <p>Chips, chocolate, cookies, sodas and energy drinks — everyone's go-to.</p>
-            <div class="items" aria-hidden="true">
-              <div class="item"><div class="avatar">C</div><div class="label">Chips</div></div>
-              <div class="item"><div class="avatar">B</div><div class="label">Bottled drinks</div></div>
-            </div>
-          </div>
-
-          <div class="zone">
-            <h3>Exotic Zone</h3>
-            <p>Rotating selection of Korean chips, Japanese sodas, Latin sweets and more.</p>
-            <div class="items" aria-hidden="true">
-              <div class="item"><div class="avatar">K</div><div class="label">Korean snacks</div></div>
-              <div class="item"><div class="avatar">J</div><div class="label">Japanese drinks</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHY -->
-    <section id="why" aria-labelledby="whyTitle">
-      <div class="section-head">
-        <h2 id="whyTitle">Why Choose Us</h2>
-      </div>
-
-      <div class="card">
-        <div class="why-grid">
-          <div class="why-card"><h4>Varied selection</h4><p>Three zones encourage exploration and suit any taste or budget.</p></div>
-          <div class="why-card"><h4>Fair prices</h4><p>We balance premium limited drops with everyday value items.</p></div>
-          <div class="why-card"><h4>Fresh rotation</h4><p>Monthly new products and "Snack of the Month" to maintain interest.</p></div>
-          <div class="why-card"><h4>Full service</h4><p>We install, stock, maintain and provide sales analytics.</p></div>
-        </div>
-
-        <div style="margin-top:14px;color:var(--muted)"><strong>Perfect for:</strong> Universities, Offices, Coworkings, Gyms.</div>
-      </div>
-    </section>
-
-    <!-- INSTALL -->
-    <section id="install" aria-labelledby="installTitle">
-      <div class="section-head">
-        <h2 id="installTitle">Install a Machine</h2>
-      </div>
-
-      <div class="install">
-        <div class="left">
-          <h3>Want SnackMix at your location?</h3>
-          <p>We analyze traffic, propose machine type, install and handle full maintenance — ready to serve 24/7.</p>
-        </div>
-        <div>
-          <a class="install-btn" href="#contact">Request Installation</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" aria-labelledby="contactTitle">
-      <div class="section-head">
-        <h2 id="contactTitle">Contact</h2>
-      </div>
-
-      <div class="card">
-        <p style="color:var(--muted)">Email: <strong>snackmix.vending@gmail.com</strong> • Phone: <strong>+375 (XX) XXX-XX-XX</strong></p>
-        <p style="color:var(--muted);margin-top:10px">Instagram/TikTok: <strong>@snackmix_vending</strong></p>
-      </div>
-    </section>
-
-    <footer>
-      © <span id="year"></span> SnackMix Vending — All rights reserved.
-    </footer>
-
+<nav>
+  <div class="nav-logo">SnackMix Vending</div>
+  <div class="nav-menu">
+    <a href="#about">About</a>
+    <a href="#services">Range of Services</a>
+    <a href="#zones">Zones</a>
+    <a href="#locations">Locations</a>
+    <a href="#why">Why Choose Us</a>
+    <a class="nav-cta" href="#install">Install</a>
   </div>
+</nav>
 
-<script>
-  // year
-  document.getElementById('year').textContent = new Date().getFullYear();
+<div class="wrap">
 
-  // smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', e=>{
-      const href = a.getAttribute('href');
-      if(href.length>1){
-        e.preventDefault();
-        const el = document.querySelector(href);
-        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-      }
-    });
-  });
-</script>
-</body>
-</html>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>SnackMix Vending</h1>
+    <h2>vending machines with something for everyone</h2>
+  </section>
+
+  <!-- 3 ZONES -->
+  <section id="zones">
+    <h2 class="section-title">Our Snack Zones</h2>
+    <p class="section-sub">Combining three categories in one machine: Healthy, Classic, Exotic. Diversity, affordability and interesting flavors for students, office workers and curious snack lovers.</p>
+    <div class="zones">
+      <div class="zone">
+        <h3>Healthy</h3>
+        <p>Nuts, protein bars, dried fruits, low-calorie snacks</p>
+      </div>
+      <div class="zone">
+        <h3>Classic</h3>
+        <p>Chips, chocolate, cookies, soda, energy drinks</p>
+      </div>
+      <div class="zone">
+        <h3>Ex
+
