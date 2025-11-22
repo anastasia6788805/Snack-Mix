@@ -6,7 +6,7 @@
 <title>SnackMix Vending</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  :root{
+:root{
     --light-bg:#FFF8F0;
     --text:#0B1220;
     --muted:#555555;
@@ -15,171 +15,61 @@
     --lime:#C7FF4D;
     --radius:12px;
     --maxw:1150px;
-  }
+}
 
-  body{
-    margin:0;
-    font-family:Poppins, sans-serif;
-    background:var(--light-bg);
-    color:var(--text);
-    line-height:1.5;
-  }
+*{box-sizing:border-box;}
+body{margin:0;font-family:Poppins, sans-serif;background:var(--light-bg);color:var(--text);line-height:1.5;}
+a{text-decoration:none;color:inherit;}
+nav{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 24px;background:#fff;position:sticky;top:0;box-shadow:0 2px 12px rgba(0,0,0,0.06);z-index:100;
+}
+.nav-logo{font-family:Montserrat, sans-serif;font-size:28px;font-weight:800;color:var(--accent);}
+.nav-menu{display:flex;gap:18px;}
+.nav-menu a{padding:8px 14px;border-radius:8px;font-weight:600;transition:0.3s;}
+.nav-menu a:hover{background:var(--accent-light);}
+.nav-cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;font-weight:700;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:24px;}
+.hero{text-align:center;margin:48px 0;}
+.hero h1{font-family:Montserrat, sans-serif;font-size:56px;margin:0;}
+.hero h2{font-size:28px;margin-top:12px;color:var(--text);}
+.hero p{margin-top:16px;font-size:18px;color:var(--muted);}
 
-  a{text-decoration:none;color:inherit;}
-  *{box-sizing:border-box;}
+/* Sections */
+section{margin-bottom:48px;}
+h2.section-title{font-family:Montserrat, sans-serif;font-size:28px;color:var(--accent);margin-bottom:12px;}
+p.section-sub{color:var(--muted);font-size:16px;}
 
-  /* NAVIGATION */
-  nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:16px 24px;
-    background:#fff;
-    position:sticky;
-    top:0;
-    box-shadow:0 2px 12px rgba(0,0,0,0.06);
-    z-index:100;
-  }
-  .nav-logo{
-    font-family:Montserrat, sans-serif;
-    font-size:24px;
-    font-weight:800;
-    color:var(--accent);
-  }
-  .nav-menu{
-    display:flex;
-    gap:18px;
-  }
-  .nav-menu a{
-    padding:8px 14px;
-    border-radius:8px;
-    font-weight:600;
-    transition:0.3s;
-  }
-  .nav-menu a:hover{
-    background:var(--accent-light);
-  }
-  .nav-cta{
-    background:var(--accent);
-    color:#fff;
-    padding:10px 16px;
-    border-radius:8px;
-    font-weight:700;
-  }
+/* Snack Zones */
+.zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px;}
+.zone{background:#fff;padding:20px;border-radius:var(--radius);box-shadow:0 4px 12px rgba(0,0,0,0.06);}
+.zone h3{font-family:Montserrat, sans-serif;font-size:20px;margin-bottom:10px;color:var(--accent);}
+.zone p{font-size:15px;color:var(--text);}
 
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:24px;}
+/* Diversity block */
+.diversity{background:#fff;margin-top:24px;padding:24px;border-radius:var(--radius);box-shadow:0 4px 12px rgba(0,0,0,0.06);}
+.diversity p{font-size:16px;color:var(--text);}
 
-  /* HERO */
-  .hero{
-    text-align:center;
-    margin:48px 0;
-  }
-  .hero h1{
-    font-family:Montserrat, sans-serif;
-    font-size:48px;
-    margin:0;
-  }
-  .hero h2{
-    font-size:24px;
-    margin-top:12px;
-    color:var(--muted);
-  }
+/* Services */
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px;}
+.service-card{background:#fff;padding:20px;border-radius:var(--radius);box-shadow:0 4px 12px rgba(0,0,0,0.06);}
+.service-card h4{font-weight:700;color:var(--accent);margin-bottom:8px;}
 
-  /* SECTIONS */
-  section{margin-bottom:48px;}
-  h2.section-title{
-    font-family:Montserrat, sans-serif;
-    font-size:28px;
-    color:var(--accent);
-    margin-bottom:12px;
-  }
-  p.section-sub{
-    color:var(--muted);
-    font-size:16px;
-  }
+/* Locations */
+.locations{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:16px;}
+.loc-card{background:#fff;padding:20px;border-radius:var(--radius);box-shadow:0 4px 12px rgba(0,0,0,0.06);}
+.loc-card strong{display:block;font-size:16px;margin-bottom:6px;}
 
-  /* 3 zones block */
-  .zones{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:16px;
-    margin-top:24px;
-  }
-  .zone{
-    background:#fff;
-    padding:20px;
-    border-radius:var(--radius);
-    box-shadow:0 4px 12px rgba(0,0,0,0.06);
-  }
-  .zone h3{
-    font-family:Montserrat, sans-serif;
-    font-size:20px;
-    margin-bottom:10px;
-    color:var(--accent);
-  }
-  .zone p{
-    font-size:15px;
-    color:var(--text);
-  }
+/* Install Form */
+form{display:grid;gap:16px;margin-top:16px;}
+input,textarea{padding:10px;border-radius:8px;border:1px solid #ccc;font-size:14px;}
+button{background:var(--accent);color:#fff;border:none;padding:12px 16px;border-radius:8px;font-weight:700;cursor:pointer;}
 
-  /* SERVICES */
-  .services{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:16px;
-    margin-top:24px;
-  }
-  .service-card{
-    background:#fff;
-    padding:20px;
-    border-radius:var(--radius);
-    box-shadow:0 4px 12px rgba(0,0,0,0.06);
-  }
-  .service-card h4{
-    font-weight:700;
-    color:var(--accent);
-    margin-bottom:8px;
-  }
+/* Contact */
+.contact p{margin:6px 0;}
 
-  /* LOCATIONS */
-  .locations{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:16px;
-    margin-top:16px;
-  }
-  .loc-card{
-    background:#fff;
-    padding:20px;
-    border-radius:var(--radius);
-    box-shadow:0 4px 12px rgba(0,0,0,0.06);
-  }
-  .loc-card strong{display:block;font-size:16px;margin-bottom:6px;}
-
-  /* INSTALL FORM */
-  form{
-    display:grid;
-    gap:16px;
-    margin-top:16px;
-  }
-  input,textarea{
-    padding:10px;
-    border-radius:8px;
-    border:1px solid #ccc;
-    font-size:14px;
-  }
-  button{
-    background:var(--accent);
-    color:#fff;
-    border:none;
-    padding:12px 16px;
-    border-radius:8px;
-    font-weight:700;
-    cursor:pointer;
-  }
-
-  /* CONTACT */
-  .contact p{margin:6px 0;}
+/* Smooth scroll */
+html{scroll-behavior:smooth;}
 </style>
 </head>
 <body>
@@ -188,8 +78,9 @@
   <div class="nav-logo">SnackMix Vending</div>
   <div class="nav-menu">
     <a href="#about">About</a>
+    <a href="#zones">Snack Zones</a>
+    <a href="#diversity">Diversity</a>
     <a href="#services">Range of Services</a>
-    <a href="#zones">Zones</a>
     <a href="#locations">Locations</a>
     <a href="#why">Why Choose Us</a>
     <a class="nav-cta" href="#install">Install</a>
@@ -199,15 +90,16 @@
 <div class="wrap">
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="about">
     <h1>SnackMix Vending</h1>
     <h2>vending machines with something for everyone</h2>
+    <p>Healthy, classic, and exotic snacks in one machine, accessible to students, office workers, and snack lovers everywhere.</p>
   </section>
 
-  <!-- 3 ZONES -->
+  <!-- Snack Zones -->
   <section id="zones">
     <h2 class="section-title">Our Snack Zones</h2>
-    <p class="section-sub">Combining three categories in one machine: Healthy, Classic, Exotic. Diversity, affordability and interesting flavors for students, office workers and curious snack lovers.</p>
+    <p class="section-sub">Combining three categories in one machine:</p>
     <div class="zones">
       <div class="zone">
         <h3>Healthy</h3>
@@ -218,5 +110,96 @@
         <p>Chips, chocolate, cookies, soda, energy drinks</p>
       </div>
       <div class="zone">
-        <h3>Ex
+        <h3>Exotic</h3>
+        <p>Asian & Latin treats, seasonal limited edition snacks and drinks</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- Diversity / target -->
+  <section id="diversity">
+    <div class="diversity">
+      <h2 class="section-title">For Everyone</h2>
+      <p>Diversity, affordability, and interesting flavors for students, office workers, and anyone curious to try something new.</p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <h2 class="section-title">Range of Services</h2>
+    <div class="services">
+      <div class="service-card">
+        <h4>Installation</h4>
+        <p>We install vending machines at strategic high-traffic locations for maximum reach.</p>
+      </div>
+      <div class="service-card">
+        <h4>Restocking</h4>
+        <p>Monthly rotation of snacks including seasonal and limited items.</p>
+      </div>
+      <div class="service-card">
+        <h4>Payment & Analytics</h4>
+        <p>Contactless payments and sales tracking for optimal performance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations -->
+  <section id="locations">
+    <h2 class="section-title">Locations</h2>
+    <div class="locations">
+      <div class="loc-card">
+        <strong>Belarusian State University — Main Hall</strong>
+        <span>Installed: Oct 30 • Available 24/7</span>
+      </div>
+      <div class="loc-card">
+        <strong>Business Center "Alpha" — Reception</strong>
+        <span>Planned installation • Negotiation in progress</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section id="why">
+    <h2 class="section-title">Why Choose Us</h2>
+    <div class="services">
+      <div class="service-card">
+        <h4>Variety</h4>
+        <p>Three snack zones for every taste and budget.</p>
+      </div>
+      <div class="service-card">
+        <h4>Affordability</h4>
+        <p>Fair pricing, including limited items and premium choices.</p>
+      </div>
+      <div class="service-card">
+        <h4>Convenience</h4>
+        <p>High-traffic locations, contactless payments, 24/7 availability.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Install Form -->
+  <section id="install">
+    <h2 class="section-title">Request Installation</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <input type="text" placeholder="Location / Address" required>
+      <textarea placeholder="Comments / Preferences"></textarea>
+      <button type="submit">Send Request</button>
+    </form>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact">
+      <p>Email: snackmix.vending@gmail.com</p>
+      <p>Instagram/TikTok: @snackmix_vending</p>
+      <p>Phone: +375 (XX) XXX-XX-XX</p>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
